@@ -1,0 +1,17 @@
+[Unit]
+Description=Queue bot (Telegram + headless Chrome CDP)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi/mercor_raspberry_pi
+ExecStart=/home/pi/mercor_raspberry_pi/.venv/bin/python -m queue_bot
+Environment=QUEUE_BOT_CONFIG=/home/pi/mercor_raspberry_pi/config.json
+Environment=PYTHONUNBUFFERED=1
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
