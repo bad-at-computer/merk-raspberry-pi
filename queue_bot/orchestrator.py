@@ -5,7 +5,7 @@ import queue
 import random
 import threading
 import time
-from datetime import date
+from datetime import date, datetime
 from typing import Callable
 
 from .cdp_browser import BrowserProcess, CdpError
@@ -235,7 +235,7 @@ class Orchestrator:
         if not self.state.chat_id:
             return
         hb_hour = self.config.heartbeat_hour
-        if date.today().hour != hb_hour:
+        if datetime.now().hour != hb_hour:
             return
         self.state.last_heartbeat_date = today
         position = self.state.last_position

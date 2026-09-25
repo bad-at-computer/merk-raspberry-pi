@@ -75,6 +75,26 @@ if [[ ! -f "$CONFIG_PATH" ]]; then
     cp "$PROJECT_DIR/config.example.json" "$CONFIG_PATH"
     echo "==> Created $CONFIG_PATH — EDIT IT: set telegram_token (create a bot with @BotFather)."
     echo "    Paths use '~' and resolve to $USER_HOME automatically."
+else
+    python3 - "$CONFIG_PATH" <<'PY'
+import json
+import sys
+from pathlib import Path
+
+path = Path(sys.argv[1])
+data = json.loads(path.read_text())
+stale_keys = ("user_data_dir", "state_file", "log_file")
+changed = []
+for key in stale_keys:
+    value = data.get(key)
+    if isinstance(value, str) and value.startswith("/home/"):
+        data[key] = "~/" + value.split("/", 3)[3]
+        changed.append(key)
+if changed:
+    path.write_text(json.dumps(data, indent=2))
+    print(f"==> Rewrote stale /home/... paths in {path.name}: {', '.join(changed)}")
+PY
+    echo "==> Using existing $CONFIG_PATH (telegram_token must be set)."
 fi
 
 if [[ $EUID -eq 0 ]]; then
