@@ -4,6 +4,7 @@ import logging
 import signal
 import sys
 from logging.handlers import RotatingFileHandler
+from pathlib import Path
 
 from .config import load_config
 from .orchestrator import Orchestrator
@@ -18,6 +19,7 @@ def setup_logging(log_file: str) -> None:
     console.setFormatter(fmt)
     root.addHandler(console)
     try:
+        Path(log_file).parent.mkdir(parents=True, exist_ok=True)
         file_handler = RotatingFileHandler(
             log_file, maxBytes=1_000_000, backupCount=3
         )

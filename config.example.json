@@ -4,7 +4,7 @@
   "poll_timeout": 25,
   "queue_url": "https://feather.openai.com/campaigns/e27f8b7b-7b84-408b-801d-7437f012e1c1?tab=tasks&task-batch=25b45d5f-afe3-4655-af5b-e74cc5804613&is_admin_view=false",
   "browser_executable": "chromium-browser",
-  "user_data_dir": "/home/pi/.cache/queue-bot-chrome",
+  "user_data_dir": "~/.cache/queue-bot-chrome",
   "debug_port": 9222,
   "headless": true,
   "disable_sandbox": false,
@@ -21,8 +21,8 @@
   "leave_max_retries": 3,
   "heartbeat_enabled": true,
   "heartbeat_hour": 9,
-  "state_file": "/home/pi/.local/state/queue-bot/state.json",
-  "log_file": "/home/pi/.local/state/queue-bot/queue-bot.log",
+  "state_file": "~/.local/state/queue-bot/state.json",
+  "log_file": "~/.local/state/queue-bot/queue-bot.log",
   "reveal_button_region": true,
   "mosaic_width": 160
 }

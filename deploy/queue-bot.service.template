@@ -5,10 +5,10 @@ Wants=network-online.target
 
 [Service]
 Type=simple
-User=pi
-WorkingDirectory=/home/pi/mercor_raspberry_pi
-ExecStart=/home/pi/mercor_raspberry_pi/.venv/bin/python -m queue_bot
-Environment=QUEUE_BOT_CONFIG=/home/pi/mercor_raspberry_pi/config.json
+User=__USER__
+WorkingDirectory=__PROJECT_DIR__
+ExecStart=__VENV_PY__ -m queue_bot
+Environment=QUEUE_BOT_CONFIG=__CONFIG__
 Environment=PYTHONUNBUFFERED=1
 Restart=always
 RestartSec=5
